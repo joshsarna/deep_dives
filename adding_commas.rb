@@ -23,8 +23,25 @@ Steps
 # Commit 2 - Initial Solution
 
 def add_commas(number)
-  # write code here  
+  if number.class != Integer
+    return number
+  else
+    number = number.to_s
+  end
+  comma_count = (number.length - 1) / 3
+  # this assumes the input number is positive; how would you make the method also accept negative numbers?
+  index = -4
+  comma_count.times do
+    number.insert(index, ",")
+    p number  # print the number after each comma insertion
+    index -= 4
+    # why do we have to incriment by 4 instead of 3?
+  end
+  p "*" * 50
+  number
 end
+
+p add_commas(1000000)  # => "1,000,000"
 
 # Commit 4 - Refactor Solution
 
