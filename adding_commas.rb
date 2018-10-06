@@ -43,9 +43,8 @@ end
 
 p add_commas(1000000)  # => "1,000,000"
 
-# Commit 4 - Refactor Solution
+# Playing with data types
 
-
-
-# Commit 3 - Write Runner Code / Tests
-
+# You can change this method so that it can accept numbers passed as strings; for example add_commas("1000") #=> "1,000"
+# To do this, you can convert the inputted number into an integer right away; things that can't be converted into integers (like arrays) will throw errors, but non-numeric strings will become 0 when converted to integers
+# What happens when you convert a string with commas and numeric digits in it to an integer?
