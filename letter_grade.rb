@@ -10,26 +10,37 @@
 
 # Commit 2 - Initial Solution
 
+# def calculate_letter_grade(*scores)  # the asterisk allows any number of arguments and puts them in an array
+#   if scores.length == 0
+#     return nil
+#   end
+#   average = scores.sum / scores.length
+#   if average >= 90
+#     return "A"
+#   elsif average >= 80
+#     return "B"
+#   elsif average >= 70
+#     return "C"
+#   elsif average >= 60
+#     return "D"
+#   else # if average < 60
+#     return "F"
+#   end
+# end
+
+# Commit 4 - Refactor Solution
 def calculate_letter_grade(*scores)  # the asterisk allows any number of arguments and puts them in an array
   if scores.length == 0
     return nil
   end
   average = scores.sum / scores.length
-  if average >= 90
-    return "A"
-  elsif average >= 80
-    return "B"
-  elsif average >= 70
-    return "C"
-  elsif average >= 60
-    return "D"
-  else # if average < 60
-    return "F"
+  letter_threshholds = {90 => "A", 80 => "B", 70 => "C", 60 => "D", 0 => "F"}
+  letter_threshholds.each do |threshhold, grade|
+    if average >= threshhold
+      return grade
+    end
   end
 end
-
-# Commit 4 - Refactor Solution
-
 
 
 # Commit 3 - Write Runner Code / Tests
