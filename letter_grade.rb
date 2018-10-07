@@ -10,8 +10,19 @@
 
 # Commit 2 - Initial Solution
 
-def calculate_letter_grade()
-  # write code here  
+def calculate_letter_grade(*scores)  # the asterisk allows any number of arguments and puts them in an array
+  average = scores.sum / scores.length
+  if average >= 90
+    return "A"
+  elsif average >= 80
+    return "B"
+  elsif average >= 70
+    return "C"
+  elsif average >= 60
+    return "D"
+  else # if average < 60
+    return "F"
+  end
 end
 
 # Commit 4 - Refactor Solution
@@ -19,3 +30,4 @@ end
 
 
 # Commit 3 - Write Runner Code / Tests
+p calculate_letter_grade(90, 100, 95) #=> "A"
