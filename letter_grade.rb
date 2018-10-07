@@ -11,6 +11,9 @@
 # Commit 2 - Initial Solution
 
 def calculate_letter_grade(*scores)  # the asterisk allows any number of arguments and puts them in an array
+  if scores.length == 0
+    return nil
+  end
   average = scores.sum / scores.length
   if average >= 90
     return "A"
@@ -31,3 +34,8 @@ end
 
 # Commit 3 - Write Runner Code / Tests
 p calculate_letter_grade(90, 100, 95) #=> "A"
+p calculate_letter_grade(0, 50, 100) #=> "F"
+p calculate_letter_grade(75, 75, 76) #=> "C"
+p calculate_letter_grade(100, 100, 50) #=> "B"
+p calculate_letter_grade(77) #=> "C"
+p calculate_letter_grade() #=> nil
