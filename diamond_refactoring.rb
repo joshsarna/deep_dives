@@ -35,6 +35,7 @@ def diamond_printer(word)
                      "Z" => 26
                      }
 
+  # we'll end up getting rid of this second array; it has all the same information as the origin character_list
   characters_list_reversed = {
                                "Z" => 26,
                                "Y" => 25, 
@@ -65,16 +66,16 @@ def diamond_printer(word)
                                }
 
   message.each do |l|
-    upcased_l = l.upcase # Why is it important to run #upcase?
-    if upcased_l == " " || upcased_l == "?" || upcased_l == "." || upcased_l == "!" || upcased_l == "-" # When will this prove true? What happens if it proves true?
+    upcased_l = l.upcase  # upcase so that capitals and lowercase are treated the same
+    if upcased_l == " " || upcased_l == "?" || upcased_l == "." || upcased_l == "!" || upcased_l == "-"  # check for the case of it not being a letter
       array << [upcased_l]
     else
-      word_array = [] # What does this represent in the code? Is this a good name for the variable?
+      word_array = [] # This represents a single diamond, corresponding to one letter; letter_array might be a better name, or diamond_array
       characters_list.each_key do |c| # What is c?
         upcased_c = c.upcase
 
         if characters_list[upcased_c] == 1
-          if characters_list[upcased_l].even? # What is it checking for being even? what does that do?
+          if characters_list[upcased_l].even? # It doesn't matter here whether it's even or odd - these can be combined into one, with the conditional eliminated
             line = " " * (characters_list[upcased_l] * 2 - 1)
             middle = line.length / 2 
             line[middle] = "A"
@@ -89,7 +90,7 @@ def diamond_printer(word)
           end
 
           if characters_list[upcased_l] == 1
-            break # Is this necessary?
+            break # This is not necessary
           end
         elsif characters_list[upcased_c] == characters_list[upcased_l]
           if characters_list[upcased_l].even?
@@ -100,12 +101,12 @@ def diamond_printer(word)
             word_array << upcased_c + " " * (characters_list[upcased_c] * 2 - 3) + upcased_c
           end 
 
-          break # Is this necessary? Is it different from the other break? 
+          break # avoid using break whenever possible
         else
           if characters_list[upcased_l].even?
-            line = " " * (characters_list[upcased_l] * 2 - 1) # What is created on this line?
+            line = " " * (characters_list[upcased_l] * 2 - 1) # This creates one row of the diamond with the correct number of spaces; the letter will then be inserted in the correct place below
             middle = line.length / 2
-            placement_1 = middle - (characters_list[upcased_c] - 1) # What are the placements?
+            placement_1 = middle - (characters_list[upcased_c] - 1) # This calculates where the letter should be inserted in the row of spaces; NB: your linter highlights this variable name because ruby convention is to not use underscores before numbers
             placement_2 = middle + (characters_list[upcased_c] - 1)
             line[placement_1] = upcased_c
             line[placement_2] = upcased_c
@@ -124,7 +125,7 @@ def diamond_printer(word)
         end
       end
 
-      if upcased_l != "A" # Is this if statement necessary
+      if upcased_l != "A" # This entire section just redoes work that's already been done; instead of doing this, we can just copy the rows that are already in the array, starting with word_array[-2] and moving back to word_array[1]
         characters_list_reversed.each_key do |c|
           upcased_c = c.upcase
 
