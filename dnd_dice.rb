@@ -13,14 +13,27 @@
 
 # Commit 2 and 4 - Initial Solution
 
+class Die
+  attr_reader :sides
 
+  def initialize(sides)
+    @sides = sides
+  end
+
+  def roll
+    rand(1..sides)
+  end
+end
 
 # Commit 3 - Write Runner Code / Tests
 
 normal_die = Die.new(6)
+p "normal_die.sides:"
 p normal_die.sides
+p "normal_die.roll:"
 p normal_die.roll
 
+p "Any failed tests will print here:"
 (1..20).each do |i|
   die = Die.new(i)
   sides = die.sides
