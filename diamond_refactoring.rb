@@ -1,6 +1,6 @@
 # Diamond Refactoring
 
-# Initial Solution
+#Commit 3 - Refactor Solution
 
 def diamond_printer(word)
   message = word.split("")
@@ -35,150 +35,46 @@ def diamond_printer(word)
                      "Z" => 26
                      }
 
-  # we'll end up getting rid of this second array; it has all the same information as the origin character_list
-  characters_list_reversed = {
-                               "Z" => 26,
-                               "Y" => 25, 
-                               "X" => 24, 
-                               "W" => 23, 
-                               "V" => 22, 
-                               "U" => 21, 
-                               "T" => 20, 
-                               "S" => 19, 
-                               "R" => 18, 
-                               "Q" => 17, 
-                               "P" => 16, 
-                               "O" => 15, 
-                               "N" => 14, 
-                               "M" => 13, 
-                               "L" => 12, 
-                               "K" => 11, 
-                               "J" => 10, 
-                               "I" => 9, 
-                               "H" => 8, 
-                               "G" => 7, 
-                               "F" => 6, 
-                               "E" => 5, 
-                               "D" => 4, 
-                               "C" => 3, 
-                               "B" => 2, 
-                               "A" => 1
-                               }
-
   message.each do |l|
     upcased_l = l.upcase  # upcase so that capitals and lowercase are treated the same
-    if upcased_l == " " || upcased_l == "?" || upcased_l == "." || upcased_l == "!" || upcased_l == "-"  # check for the case of it not being a letter
+    if upcased_l.count("A-Z") == 0
       array << [upcased_l]
     else
       word_array = [] # This represents a single diamond, corresponding to one letter; letter_array might be a better name, or diamond_array
       characters_list.each_key do |c| # What is c?
         upcased_c = c.upcase
 
+        if characters_list[upcased_c] > characters_list[upcased_l]
+          break
+        end
+
         if characters_list[upcased_c] == 1
-          if characters_list[upcased_l].even? # It doesn't matter here whether it's even or odd - these can be combined into one, with the conditional eliminated
-            line = " " * (characters_list[upcased_l] * 2 - 1)
-            middle = line.length / 2 
-            line[middle] = "A"
-            word_array << line
-          end
-
-          if characters_list[upcased_l].odd?
-            line = " " * (characters_list[upcased_l] * 2 - 1)
-            middle = line.length / 2
-            line[middle] = "A"
-            word_array << line
-          end
-
-          if characters_list[upcased_l] == 1
-            break # This is not necessary
-          end
-        elsif characters_list[upcased_c] == characters_list[upcased_l]
-          if characters_list[upcased_l].even?
-            word_array << upcased_c + " " * (characters_list[upcased_c] * 2 - 3) + upcased_c
-          end
-
-          if characters_list[upcased_l].odd?
-            word_array << upcased_c + " " * (characters_list[upcased_c] * 2 - 3) + upcased_c
-          end 
-
-          break # avoid using break whenever possible
+          line = " " * (characters_list[upcased_l] * 2 - 1)
+          middle = line.length / 2 
+          line[middle] = "A"
+          word_array << line
         else
-          if characters_list[upcased_l].even?
-            line = " " * (characters_list[upcased_l] * 2 - 1) # This creates one row of the diamond with the correct number of spaces; the letter will then be inserted in the correct place below
-            middle = line.length / 2
-            placement_1 = middle - (characters_list[upcased_c] - 1) # This calculates where the letter should be inserted in the row of spaces; NB: your linter highlights this variable name because ruby convention is to not use underscores before numbers
-            placement_2 = middle + (characters_list[upcased_c] - 1)
-            line[placement_1] = upcased_c
-            line[placement_2] = upcased_c
-            word_array << line
-          end
-
-          if characters_list[upcased_l].odd?
-            line = " " * (characters_list[upcased_l] * 2 - 1)
-            middle = line.length / 2
-            placement_1 = middle - (characters_list[upcased_c] - 1)
-            placement_2 = middle + (characters_list[upcased_c] - 1)
-            line[placement_1] = upcased_c
-            line[placement_2] = upcased_c
-            word_array << line
-          end
+          line = " " * (characters_list[upcased_l] * 2 - 1)
+          middle = line.length / 2
+          placement_1 = middle - (characters_list[upcased_c] - 1)
+          placement_2 = middle + (characters_list[upcased_c] - 1)
+          line[placement_1] = upcased_c
+          line[placement_2] = upcased_c
+          word_array << line
         end
       end
 
-      if upcased_l != "A" # This entire section just redoes work that's already been done; instead of doing this, we can just copy the rows that are already in the array, starting with word_array[-2] and moving back to word_array[1]
-        characters_list_reversed.each_key do |c|
-          upcased_c = c.upcase
-
-          if characters_list[upcased_c] == 1
-            if characters_list[upcased_l].even?
-              line = " " * (characters_list[upcased_l] * 2 - 1)
-              middle = line.length / 2 
-              line[middle] = "A"
-              word_array << line
-            end
-
-            if characters_list[upcased_l].odd?
-              line = " " * (characters_list[upcased_l] * 2 - 1)
-              middle = line.length / 2
-              line[middle] = "A"
-              word_array << line
-            end     
-          elsif characters_list[upcased_c] < characters_list[upcased_l]
-            if characters_list[upcased_l].even?
-              line = " " * (characters_list[upcased_l] * 2 - 1)
-              middle = line.length / 2
-              placement_1 = middle - (characters_list[upcased_c] - 1)
-              placement_2 = middle + (characters_list[upcased_c] - 1)
-              line[placement_1] = upcased_c
-              line[placement_2] = upcased_c
-              word_array << line
-            end
-
-            if characters_list[upcased_l].odd?
-              line = " " * (characters_list[upcased_l] * 2 - 1)
-              middle = line.length / 2
-              placement_1 = middle - (characters_list[upcased_c] - 1)
-              placement_2 = middle + (characters_list[upcased_c] - 1)
-              line[placement_1] = upcased_c
-              line[placement_2] = upcased_c
-              word_array << line
-            end
-          end
-        end
-      end
+      word_array += word_array[0..-2].reverse
       array << word_array
     end
   end
   array.flatten!.join("\n") + "\n"
 end
 
-#Commit 3 - Refactor Solution
-
-
 
 #Commit 2 - Write Runner Code / Tests
 
-# now all three tests should print out true; when changing code, if anything changes to false, we'll know we changed something we shouldn't have changed
+
 p diamond_printer("ace") == "A\n  A  \n B B \nC   C\n B B \n  A  \n    A    \n   B B   \n  C   C  \n D     D \nE       E\n D     D \n  C   C  \n   B B   \n    A    \n"
 p "========================="
 p diamond_printer("ghost") == "      A      \n     B B     \n    C   C    \n   D     D   \n  E       E  \n F         F \nG           G\n F         F \n  E       E  \n   D     D   \n    C   C    \n     B B     \n      A      \n       A       \n      B B      \n     C   C     \n    D     D    \n   E       E   \n  F         F  \n G           G \nH             H\n G           G \n  F         F  \n   E       E   \n    D     D    \n     C   C     \n      B B      \n       A       \n              A              \n             B B             \n            C   C            \n           D     D           \n          E       E          \n         F         F         \n        G           G        \n       H             H       \n      I               I      \n     J                 J     \n    K                   K    \n   L                     L   \n  M                       M  \n N                         N \nO                           O\n N                         N \n  M                       M  \n   L                     L   \n    K                   K    \n     J                 J     \n      I               I      \n       H             H       \n        G           G        \n         F         F         \n          E       E          \n           D     D           \n            C   C            \n             B B             \n              A              \n                  A                  \n                 B B                 \n                C   C                \n               D     D               \n              E       E              \n             F         F             \n            G           G            \n           H             H           \n          I               I          \n         J                 J         \n        K                   K        \n       L                     L       \n      M                       M      \n     N                         N     \n    O                           O    \n   P                             P   \n  Q                               Q  \n R                                 R \nS                                   S\n R                                 R \n  Q                               Q  \n   P                             P   \n    O                           O    \n     N                         N     \n      M                       M      \n       L                     L       \n        K                   K        \n         J                 J         \n          I               I          \n           H             H           \n            G           G            \n             F         F             \n              E       E              \n               D     D               \n                C   C                \n                 B B                 \n                  A                  \n                   A                   \n                  B B                  \n                 C   C                 \n                D     D                \n               E       E               \n              F         F              \n             G           G             \n            H             H            \n           I               I           \n          J                 J          \n         K                   K         \n        L                     L        \n       M                       M       \n      N                         N      \n     O                           O     \n    P                             P    \n   Q                               Q   \n  R                                 R  \n S                                   S \nT                                     T\n S                                   S \n  R                                 R  \n   Q                               Q   \n    P                             P    \n     O                           O     \n      N                         N      \n       M                       M       \n        L                     L        \n         K                   K         \n          J                 J          \n           I               I           \n            H             H            \n             G           G             \n              F         F              \n               E       E               \n                D     D                \n                 C   C                 \n                  B B                  \n                   A                   \n"
