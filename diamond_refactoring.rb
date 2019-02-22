@@ -2,64 +2,44 @@
 
 #Commit 3 - Refactor Solution
 
+def letter_to_number(letter)
+  letter.ord - 64
+end
+
+def number_to_letter(number)
+  (number + 64).chr
+end
+
 def diamond_printer(word)
   message = word.split("")
   array = []
 
-  characters_list = {
-                     "A" => 1, 
-                     "B" => 2, 
-                     "C" => 3, 
-                     "D" => 4, 
-                     "E" => 5, 
-                     "F" => 6, 
-                     "G" => 7, 
-                     "H" => 8, 
-                     "I" => 9, 
-                     "J" => 10, 
-                     "K" => 11, 
-                     "L" => 12, 
-                     "M" => 13, 
-                     "N" => 14, 
-                     "O" => 15, 
-                     "P" => 16, 
-                     "Q" => 17, 
-                     "R" => 18, 
-                     "S" => 19, 
-                     "T" => 20, 
-                     "U" => 21, 
-                     "V" => 22, 
-                     "W" => 23, 
-                     "X" => 24, 
-                     "Y" => 25, 
-                     "Z" => 26
-                     }
-
   message.each do |l|
     upcased_l = l.upcase  # upcase so that capitals and lowercase are treated the same
-    if upcased_l.count("A-Z") == 0
+    l_as_number = letter_to_number(upcased_l)
+
+    if l_as_number > 26 || l_as_number < 1
       array << [upcased_l]
     else
       word_array = [] # This represents a single diamond, corresponding to one letter; letter_array might be a better name, or diamond_array
-      characters_list.each_key do |c| # What is c?
-        upcased_c = c.upcase
+      i = 0
+      i_as_letter = ""
+      while i_as_letter != upcased_l
+        i += 1
+        i_as_letter = number_to_letter(i)
 
-        if characters_list[upcased_c] > characters_list[upcased_l]
-          break
-        end
-
-        if characters_list[upcased_c] == 1
-          line = " " * (characters_list[upcased_l] * 2 - 1)
+        if i == 1
+          line = " " * (l_as_number * 2 - 1)
           middle = line.length / 2 
           line[middle] = "A"
           word_array << line
         else
-          line = " " * (characters_list[upcased_l] * 2 - 1)
+          line = " " * (l_as_number * 2 - 1)
           middle = line.length / 2
-          placement_1 = middle - (characters_list[upcased_c] - 1)
-          placement_2 = middle + (characters_list[upcased_c] - 1)
-          line[placement_1] = upcased_c
-          line[placement_2] = upcased_c
+          placement_1 = middle - (i - 1)
+          placement_2 = middle + (i - 1)
+          line[placement_1] = i_as_letter
+          line[placement_2] = i_as_letter
           word_array << line
         end
       end
