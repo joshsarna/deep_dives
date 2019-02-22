@@ -17,6 +17,12 @@ class Die
   attr_reader :sides
 
   def initialize(sides)
+    if sides < 1
+      raise ArgumentError.new("A die must have at least one side")
+    elsif sides % 1 != 0
+      raise ArgumentError.new("A die must have an integer number of sides")
+      
+    end
     @sides = sides
   end
 
@@ -73,3 +79,7 @@ die4 = Die.new(12)
 dice = [die1, die2, die3, die4]
 cup = DieCup.new(dice)
 p cup.roll_all
+
+p "Argument error runner code:"
+# Die.new(0)
+# Die.new(1.5)
