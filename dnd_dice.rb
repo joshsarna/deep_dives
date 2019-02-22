@@ -17,3 +17,22 @@
 
 # Commit 3 - Write Runner Code / Tests
 
+normal_die = Die.new(6)
+p normal_die.sides
+p normal_die.roll
+
+(1..20).each do |i|
+  die = Die.new(i)
+  sides = die.sides
+  roll = die.roll
+
+  if sides != i
+    p "test of sides getter fails for i = #{i}"
+  end
+
+  if roll < 1 || roll > sides
+    p "test of roll method fails for i = #{i}"
+  end
+
+  i += 1
+end
