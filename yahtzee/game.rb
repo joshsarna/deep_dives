@@ -38,7 +38,7 @@ class Game
       end
       if rolls < 3
         p "Type the numbers of the dice you would like to reroll, separated by spaces and hit enter; if you don't want to reroll any, just hit enter."
-        rerolls = gets.chomp.split(' ').map { | number | number.to_i }.select { | number | [*1..6].include?(number) }
+        rerolls = gets.chomp.split(' ').map { | number | number.to_i }.select { | number | [*1..5].include?(number) }
         if rerolls.length == 0
           turn_ended = true
         else
