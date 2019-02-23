@@ -15,6 +15,17 @@ class Game
     @die_cup = DieCup.new([die1, die2, die3, die4, die5])
   end
 
+  def play_again
+    p "Play again? (yes/no)"
+    if gets.chomp == "yes"
+      3.times do
+        puts ""
+      end
+      game = Game.new()
+      game.play
+    end
+  end
+
   def turn
     @score_board.show_board
     turn_ended = false
@@ -78,5 +89,6 @@ class Game
       @@high_score = score
     end
     puts "HIGH SCORE: #{@@high_score}"
+    play_again
   end
 end
