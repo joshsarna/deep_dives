@@ -65,7 +65,7 @@ class ScoreBoard
   def score_three_of_a_kind(dice)
     if !three_of_a_kind
       score_additional_yahtzees(dice)
-      if dice.count(dice.uniq.max) >= 3 || dice.count(dice.uniq.min) >= 3
+      if (dice.count(dice.uniq.max) >= 3 || dice.count(dice.uniq.min) >= 3) || (dice.uniq.length == 3 && dice.count(dice.uniq.max) == 1 || dice.count(dice.uniq.min) == 1)
         @three_of_a_kind = dice.sum
       else
         @three_of_a_kind = 0

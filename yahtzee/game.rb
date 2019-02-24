@@ -27,6 +27,7 @@ class Game
   end
 
   def turn
+    puts ""
     @score_board.show_board
     turn_ended = false
     "Roll:"
@@ -69,7 +70,6 @@ class Game
         end
       end
     end
-    @score_board.show_board
   end
 
   def play
@@ -79,11 +79,12 @@ class Game
       turn
       i += 1
     end
+    score = @score_board.total
+    @score_board.show_board
 
     2.times do
       puts "-" * 50
     end
-    score = @score_board.total
     puts "FINAL SCORE: #{score}"
     if score > @@high_score
       @@high_score = score
