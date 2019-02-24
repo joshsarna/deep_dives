@@ -78,6 +78,7 @@ class Game
       puts "TURN ##{i}"
       turn
       i += 1
+      score = @score_board.total
     end
     score = @score_board.total
     @score_board.show_board

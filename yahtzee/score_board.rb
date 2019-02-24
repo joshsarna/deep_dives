@@ -23,9 +23,9 @@ class ScoreBoard
   def upper_total
     upper_total = (aces || 0) + (twos || 0) + (threes || 0) + (fours || 0) + (fives || 0) + (sixes || 0)
     if upper_total >= 63
-      bonus = 35
+      @bonus = 35
     else
-      bonus = 0
+      @bonus = 0
     end
     upper_total += bonus
   end
