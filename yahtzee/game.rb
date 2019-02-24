@@ -27,7 +27,6 @@ class Game
   end
 
   def turn
-    puts ""
     @score_board.show_board
     turn_ended = false
     "Roll:"
@@ -75,6 +74,7 @@ class Game
   def play
     i = 1
     13.times do
+      puts ""
       puts "TURN ##{i}"
       turn
       i += 1
