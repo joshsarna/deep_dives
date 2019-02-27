@@ -12,7 +12,9 @@
 #Commit 2 - Initial Solution
 
 def daffify(message)
-  # write code here  
+  methage = message.gsub('s', 'th')
+  methage = methage.gsub('S', 'Th')
+  methage = methage.gsub('thth', 'th')
 end
 
 def porkify(message, dictionary)
