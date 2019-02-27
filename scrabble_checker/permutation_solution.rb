@@ -17,6 +17,8 @@ def permutation_checker(base_word, possible_permutation)
   possible_permutation_letters.each do |letter|
     if !base_word.include?(letter)
       is_permutation = false
+    else
+      base_word.slice!(base_word.index(letter))
     end
   end
   return is_permutation

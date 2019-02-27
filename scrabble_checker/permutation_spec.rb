@@ -27,7 +27,7 @@ RSpec.describe '#permutation_checker' do
   end
 
   it 'should not accept duplicate letters from base word as part of the permutation' do 
-    skip
+    # skip
     expect(permutation_checker("caliber", "calberr")).to eq false
   end
 end
