@@ -9,6 +9,16 @@
 # use gsub to replace 's' with 'th'
 # return the new string
 
+# porky pig
+# input: "this is a nice place" (string), dictionary (array)
+# output: "eh th TH eh this is a nice eh pl PL eh place." (string)
+
+# define a method that accepts a string and an array as parameters
+# check the string for words in the array
+# replace words in the string that are also in the array with porkified versions of themselves
+# to porkify: "eh #{string[0..1]} #{string[0..1].upcase} eh #{string}"
+# in the case that string[i] is a vowel, use string[0] + eh 
+
 #Commit 2 - Initial Solution
 
 def daffify(message)
