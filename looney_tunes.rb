@@ -28,7 +28,19 @@ def daffify(message)
 end
 
 def porkify(message, dictionary)
-
+  vowels = ["a", "e", "i", "o", "u", "y"]
+  words = message.split(" ")
+  words.each do |word|
+    if dictionary.include?(word)
+      if vowels.include?(word[1])
+        word.gsub!(word.gsub!(/[^a-z]/, ''), "eh #{word[0]}eh #{word[0].upcase}eh eh #{word}")
+      else
+        word.gsub!(word.gsub(/[^a-z]/, ''), "eh #{word[0..1]} #{word[0..1].upcase} eh #{word}")
+      end
+    end
+  end
+  porked_message = words.join(' ')
+  p porked_message
 end
 
 # Commit 4 - Refactor Solution
@@ -46,4 +58,4 @@ end
 
 # porky pig runner code
 dictionary = ["this", "place", "tomorrow", "rust"]
-p porkify("this is a nice place", dictionary) == "eh th TH eh this is a nice eh pl PL eh place."
+p porkify("this is a nice place", dictionary) == "eh th TH eh this is a nice eh pl PL eh place"
