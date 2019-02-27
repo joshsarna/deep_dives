@@ -11,7 +11,7 @@
 # Commit 2 - Initial Solution
 
 def permutation_checker(base_word, possible_permutation)
-  # write your code here
+  return true
 end
 
 # Commit 4 - Refactored Solution

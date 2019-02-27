@@ -11,9 +11,9 @@ RSpec.describe '#permutation_checker' do
   end
 
   it 'should return a boolean' do 
-    skip
-    expect(permutation_checker("caliber", "eclair")).to be_in [true, false]
-    expect(permutation_checker("caliber", "bob")).to be_in [true, false]
+    # skip
+    expect([true, false]).to include permutation_checker("caliber", "eclair")
+    expect([true, false]).to include permutation_checker("caliber", "bob")
   end
 
   it 'should return ture for a correct permutation' do 
