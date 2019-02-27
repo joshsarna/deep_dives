@@ -46,12 +46,11 @@ end
 # Commit 4 - Refactor Solution
 def stutter(word)
   vowels = ["a", "e", "i", "o", "u", "y"]
-  stuttered_word_without_punctuation = "eh #{word[0..1]} #{word[0..1].upcase} eh #{word}"
+  stuttered_word = "eh #{word[0..1]} #{word[0..1].upcase} eh #{word}"
   if vowels.include?(word[1])
-    stuttered_word_without_punctuation[4] = "eh"
-    stuttered_word_without_punctuation[8] = "EH"
+    stuttered_word[4] = "eh"
+    stuttered_word[8] = "EH"
   end
-  stuttered_word = word.gsub(word, stuttered_word_without_punctuation)
   return stuttered_word
 end
 
