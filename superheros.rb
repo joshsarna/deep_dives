@@ -19,6 +19,10 @@ class Superhero
   def hit(target)
 
   end
+
+  def grab_tool
+
+  end
 end
 
 # Runner Code / Tests - don't touch anything below this line.
