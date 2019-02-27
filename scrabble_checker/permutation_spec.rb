@@ -17,12 +17,12 @@ RSpec.describe '#permutation_checker' do
   end
 
   it 'should return ture for a correct permutation' do 
-    skip
+    # skip
     expect(permutation_checker("caliber", "eclair")).to eq true
   end
 
   it 'should return false for an incorrect permutation' do 
-    skip
+    # skip
     expect(permutation_checker("caliber", "bob")).to eq false
   end
 
