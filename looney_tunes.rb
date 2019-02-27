@@ -28,7 +28,7 @@ def daffify(message)
 end
 
 def porkify(message, dictionary)
-  # write code here  
+
 end
 
 # Commit 4 - Refactor Solution
@@ -37,9 +37,13 @@ end
 #Commit 3 - Write Runner Code / Tests
 
 # daffy duck runner code
-p daffify("Yes") == "Yeth"
-p daffify("No") == "No"
-p daffify("This is ridiculous") == "Thith ith ridiculouth"
-p daffify("That's why I always work solo") == "That'th why I alwayth work tholo"
+# p daffify("Yes") == "Yeth"
+# p daffify("No") == "No"
+# p daffify("This is ridiculous") == "Thith ith ridiculouth"
+# p daffify("That's why I always work solo") == "That'th why I alwayth work tholo"
 
-p daffify("Such a sourpuss") == "Thuch a thourputh" # bonus, needs more logic
+# p daffify("Such a sourpuss") == "Thuch a thourputh" # bonus, needs more logic
+
+# porky pig runner code
+dictionary = ["this", "place", "tomorrow", "rust"]
+p porkify("this is a nice place", dictionary) == "eh th TH eh this is a nice eh pl PL eh place."
