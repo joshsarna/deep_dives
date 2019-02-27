@@ -21,7 +21,22 @@
 # Commit 2 - Initial Solution
 
 def collect_contact_info(data)
-  # write code here  
+  parsed_contact_info = {}
+  data.each do |person_attributes|
+    parsed_contact_info[person_attributes[0][0]] = {}
+
+    # find twitter and phone number
+    person_attributes.each do |attribute|
+      if attribute[0] =~ /@/
+        parsed_contact_info[person_attributes[0][0]][:twitter] = attribute[0]
+      end
+
+      if !(attribute[0] =~ /[a-wz]/) && attribute[0].length > 5
+        parsed_contact_info[person_attributes[0][0]][:phone] = attribute[0]
+      end
+    end 
+  end 
+  parsed_contact_info
 end
 
 # Commit 4 - Refactor Solution
