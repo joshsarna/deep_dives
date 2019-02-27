@@ -15,6 +15,10 @@ class Superhero
     @alive = true
     @has_special_tool = false
   end
+
+  def hit(target)
+
+  end
 end
 
 # Runner Code / Tests - don't touch anything below this line.
