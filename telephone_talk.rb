@@ -32,5 +32,7 @@ end
 
 # Don't touch the code under this line.
 bloggers_information = [[["James Spader"],["214.555.1357"],["123 N South St."],["Chicago"],["il"],["60645"],["@samspade"]], [["Jenny Forrest"],["Schamberg"],["il"],["312-555-2244"],["@imaboat"]], [["Jimmy Stuart"],["@getyerwings"],["313 555 9865"],["1128 Alameda Ave"],["Glendale"],["CA"],["92606"]], [["Mountain Joe"],["3035550021"],["@campfire"]], [["Mr. Henderson"],["312-555-9224"],["Chicago"],["il"],["60647"],["@hairy"]], [["Nerf Herder"],["123 N South St."],["Chicago"],["il"],["60645"],["@blueharvest"],["310.555.2234"]]]
-
 p collect_contact_info(bloggers_information)
+
+bloggers_information_abridged = [[["James Spader"],["214.555.1357"],["123 N South St."],["Chicago"],["il"],["60645"],["@samspade"]], [["Jenny Forrest"],["Schamberg"],["il"],["312-555-2244"],["@imaboat"]], [["Jimmy Stuart"],["@getyerwings"],["313 555 9865"],["1128 Alameda Ave"],["Glendale"],["CA"],["92606"]]]
+p collect_contact_info(bloggers_information_abridged) == {"James Spader" => {:phone => "214.555.1357", :twitter => "@samspade"}, "Jenny Forrest" => {:phone => "312-555-2244", :twitter => "@imaboat"}, "Jimmy Stuart" =>{:phone => "313 555 9865", :twitter => "@getyerwings"}}  # => true
