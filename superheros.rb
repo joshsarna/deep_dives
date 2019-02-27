@@ -6,7 +6,7 @@
 # Commit 2 - Solution
 
 class Superhero
-  attr_reader :name, :hitpoints
+  attr_reader :name, :hitpoints, :alive
 
   def initialize(opts)
     @name = opts[:name]
