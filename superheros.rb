@@ -6,8 +6,8 @@
 # Commit 2 - Solution
 
 class Superhero
-  attr_reader :name, :attack, :alive, :has_special_tool
-  attr_accessor :hitpoints
+  attr_reader :name
+  attr_accessor :hitpoints, :attack, :has_special_tool, :alive
 
   def initialize(opts)
     @name = opts[:name]
@@ -19,10 +19,14 @@ class Superhero
 
   def hit(target)
     target.hitpoints -= attack
+    if target.hitpoints < 1
+      target.alive = false
+    end
   end
 
   def grab_tool
-    @has_special_tool = true
+    self.has_special_tool = true
+    self.attack *= 3
   end
 end
 
