@@ -15,8 +15,8 @@
 
 # output: *************** Yard Report ***************
 
-#   Yard: Clean
-#   Divots: Replaced
+  # Yard: Clean
+  # Divots: Replaced
 
 #   Total Eggs Found: 13
 
@@ -62,7 +62,40 @@
 # Commit 3 - Initial Solution
 
 def clean_yard(yard)
-  # write code here  
+  basket = []
+  egg_count = 0
+  yard.each_with_index do |row, row_number|
+    row.each_with_index do |spot, column_number|
+      if spot == "E"
+        egg_count += 1
+        basket << {row: row_number, col: column_number}
+        yard[row_number][column_number] = "G"
+        p "UPDATED YARD:"
+        yard.each do |row|
+          p row
+        end
+      end
+    end
+  end
+  report = [
+    "*************** Yard Report ***************",
+    "",
+    "  Yard: Clean",
+    "  Divots: Replaced",
+    "  Total Eggs Found: #{egg_count}",
+    "  Eggs found at the following coordinates",
+    "  ---------------------------------------"
+  ]
+  basket.each do |egg|
+    report << "             col: #{egg[:col]} - row: #{egg[:row]}"
+  end
+  report += [
+    "  Sir or Madam,",
+    "  Your Yard is safe for Horseshoe,",
+    "  BBQ's, Beanbag-toss and the like.",
+    "  See you next year, Rabbit."
+  ]
+  return report
 end
 
 # Commit 4 - Refactor Solution
